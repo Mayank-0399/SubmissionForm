@@ -23,8 +23,8 @@ app.get("/", (req, res) => {
 // Serve frontend static files
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-// Catch-all route for SPA
-app.get("/*", (req, res) => {
+// Catch-all route for SPA (use regex to avoid path-to-regexp errors)
+app.get(/^(?!\/api)/, (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
