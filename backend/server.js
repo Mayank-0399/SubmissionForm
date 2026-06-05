@@ -14,17 +14,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// API routes
 app.use("/api/contact", contactRoutes);
-
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("API Running");
 });
 
 // Serve frontend static files
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-// Catch-all route for SPA (use regex to avoid path-to-regexp errors)
-app.get(/^(?!\/api)/, (req, res) => {
+// Catch-all route for SPA - serve index.html for all non-API routes
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
