@@ -24,8 +24,10 @@ function App() {
     setLoading(true);
 
     try {
+      const API_URL =
+  "https://submissionform-1.onrender.com";
       const res = await axios.post(
-        "http://localhost:5000/api/contact",
+        `${API_URL}/api/contact`,
         form
       );
 
